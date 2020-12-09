@@ -1,3 +1,5 @@
+-- Use 'DROP TABLE (table_name) CASCADE;' to remove a table. 'CASCADE' removes the connections to other tables
+
 -- Creating tables for PH-EmployeeDB
 CREATE TABLE departments(
 	dept_no VARCHAR(4) NOT NULL,
@@ -48,8 +50,8 @@ CREATE TABLE salaries(
 );
 
 CREATE TABLE dept_emp(
-	dept_no VARCHAR(4) NOT NULL,
 	emp_no INT NOT NULL,
+	dept_no VARCHAR(4) NOT NULL,
 	from_date DATE NOT NULL,
 	to_date DATE NOT NULL,
 FOREIGN KEY (emp_no) REFERENCES employees (emp_no),
@@ -57,7 +59,7 @@ FOREIGN KEY (dept_no) REFERENCES departments (dept_no),
 	PRIMARY KEY (emp_no, dept_no)
 );
 
-CREATE TABLE title(
+CREATE TABLE titles(
 	emp_no INT NOT NULL,
 	title VARCHAR NOT NULL,
 	from_date DATE NOT NULL,
