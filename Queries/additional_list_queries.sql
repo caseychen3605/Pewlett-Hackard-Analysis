@@ -29,3 +29,18 @@ WHERE (e.birth_date BETWEEN '1952-01-01' AND '1955-12-31')
 -- Adding birth and hire date filters
 	AND (de.to_date = '9999-01-01')
 -- Adding to_date filter for current employees
+
+-- List of managers per department
+SELECT dm.dept_no,
+	d.dept_name,
+	dm.emp_no,
+	ce.last_name,
+	ce.first_name,
+	dm.from_date,
+	dm.to_date
+INTO manager_info
+FROM dept_manager as dm
+	INNER JOIN departments as d
+		ON (dm.dept_no = d.dept_no)
+	INNER JOIN current_emp as ce
+		on (dm.emp_no = ce.emp_no);
