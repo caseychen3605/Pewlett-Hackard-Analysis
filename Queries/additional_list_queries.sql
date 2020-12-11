@@ -63,24 +63,18 @@ FROM current_emp as ce
 SELECT ri.emp_no,
 	ri.first_name,
 	ri.last_name,
-	de.dept_no,
-	d.dept_name
+	di.dept_name
 FROM retirement_info as ri
-	LEFT JOIN dept_emp as de
-	ON (ri.emp_no = de.emp_no)
-	LEFT JOIN departments as d
-	ON (de.dept_no = d.dept_no)	
-WHERE d.dept_name = 'Sales';
+	LEFT JOIN dept_info as di
+	ON (ri.emp_no = di.emp_no)	
+WHERE di.dept_name = 'Sales';
 
 -- Sales and Development teams information
 SELECT ri.emp_no,
 	ri.first_name,
 	ri.last_name,
-	de.dept_no,
-	d.dept_name
+	di.dept_name
 FROM retirement_info as ri
-	LEFT JOIN dept_emp as de
-	ON (ri.emp_no = de.emp_no)
-	LEFT JOIN departments as d
-	ON (de.dept_no = d.dept_no)	
-WHERE d.dept_name IN ('Sales', 'Development');
+	LEFT JOIN dept_info as di
+	ON (ri.emp_no = di.emp_no)	
+WHERE di.dept_name IN ('Sales', 'Development');
