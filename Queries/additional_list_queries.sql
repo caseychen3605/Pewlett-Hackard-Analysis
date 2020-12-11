@@ -71,3 +71,16 @@ FROM retirement_info as ri
 	LEFT JOIN departments as d
 	ON (de.dept_no = d.dept_no)	
 WHERE d.dept_name = 'Sales';
+
+-- Sales and Development teams information
+SELECT ri.emp_no,
+	ri.first_name,
+	ri.last_name,
+	de.dept_no,
+	d.dept_name
+FROM retirement_info as ri
+	LEFT JOIN dept_emp as de
+	ON (ri.emp_no = de.emp_no)
+	LEFT JOIN departments as d
+	ON (de.dept_no = d.dept_no)	
+WHERE d.dept_name IN ('Sales', 'Development');
